@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
-import { auth, user } from './routes'
+import { auth, user, product, category } from './routes'
 import { connection } from './common/database'
 
 export const app = express()
@@ -22,3 +22,5 @@ app.get('', (req, res, next) => {
 
 app.use('/v1/api/auth', auth)
 app.use('/v1/api/user', user)
+app.use('/v1/api/product', product)
+app.use('/v1/api/category', category)

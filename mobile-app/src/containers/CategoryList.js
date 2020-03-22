@@ -28,7 +28,7 @@ const CategoryList = ({
   };
   return (
     <View style={{ marginBottom: 17 }}>
-      <Text style={styles.nameProduct}>{category.categoryName}</Text>
+      <Text style={styles.nameProduct}>{category.name}</Text>
       <SafeAreaView>
         <FlatList
           data={category.products.filter(rec =>

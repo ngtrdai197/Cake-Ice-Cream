@@ -13,7 +13,8 @@ const CategoryList = ({
   category,
   addToCart,
   visible,
-  inVisible
+  inVisible,
+  searchName
 }) => {
   const { orders } = ordersState;
   const addProduct = product => {
@@ -30,7 +31,9 @@ const CategoryList = ({
       <Text style={styles.nameProduct}>{category.categoryName}</Text>
       <SafeAreaView>
         <FlatList
-          data={category.products}
+          data={category.products.filter(rec =>
+            rec.name.toLowerCase().includes(searchName.toLowerCase())
+          )}
           horizontal={true}
           renderItem={({ item }) => (
             <Item product={item} addToCart={addProduct} />

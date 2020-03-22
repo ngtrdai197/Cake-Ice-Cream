@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 
-const InputSearch = () => {
-  // TODO: need to implement
+const InputSearch = ({ setSearchName }) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
@@ -12,7 +11,10 @@ const InputSearch = () => {
             <AntIcon name="search1" style={styles.commonIcon} />
           </View>
           <View>
-            <TextInput placeholder="Search Product ..." />
+            <TextInput
+              placeholder="Search Product ..."
+              onChangeText={text => setSearchName(text)}
+            />
           </View>
         </View>
         <View style={styles.itemIcon}>

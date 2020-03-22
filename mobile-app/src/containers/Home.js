@@ -7,7 +7,7 @@ import InputSearch from '../components/InputSearch';
 import CategoryList from './CategoryList';
 
 const HomePage = ({ navigation }) => {
-  const [categories, setCategories] = useState([
+  const [categories, _] = useState([
     {
       id: 1,
       categoryName: 'Chocolate Cake',
@@ -63,14 +63,17 @@ const HomePage = ({ navigation }) => {
       ]
     }
   ]);
+  const [searchName, setSearchName] = useState('');
   return (
     <View style={styles.container}>
-      <InputSearch />
+      <InputSearch setSearchName={setSearchName} />
       <View style={styles.wrapper}>
         <SafeAreaView>
           <FlatList
             data={categories}
-            renderItem={({ item }) => <CategoryList category={item} />}
+            renderItem={({ item }) => (
+              <CategoryList category={item} searchName={searchName} />
+            )}
             keyExtractor={(_, index) => index + ''}
           />
         </SafeAreaView>

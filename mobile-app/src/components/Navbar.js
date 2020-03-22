@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,8 +11,7 @@ import AntIcon from 'react-native-vector-icons/AntDesign';
 import { connect } from 'react-redux';
 
 const Navbar = ({ ordersState, navigation }) => {
-  const [counter, setCounter] = useState(0);
-
+  const { total } = ordersState;
   return (
     <View style={styles.header}>
       <View>
@@ -26,7 +25,7 @@ const Navbar = ({ ordersState, navigation }) => {
             style={{ fontSize: 24, paddingRight: 15 }}
           />
           <View style={styles.counter}>
-            <Text>{counter}</Text>
+            <Text>{total}</Text>
           </View>
         </View>
       </TouchableOpacity>

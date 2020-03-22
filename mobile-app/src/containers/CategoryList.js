@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { addToCart } from '../store/actions/orders';
-import { visible } from '../store/actions/snackbar';
+import { visible, inVisible } from '../store/actions/snackbar';
 import Item from '../components/Item';
 
-const CategoryList = ({ ordersState, category, addToCart, visible }) => {
+const CategoryList = ({
+  ordersState,
+  category,
+  addToCart,
+  visible,
+  inVisible
+}) => {
   const { orders } = ordersState;
   const addProduct = product => {
     const index = orders.findIndex(rec => rec.id === product.id);
@@ -16,6 +22,7 @@ const CategoryList = ({ ordersState, category, addToCart, visible }) => {
       visible('Product already exist in cart ...');
       return;
     }
+    inVisible('');
     addToCart(product);
   };
   return (
@@ -41,7 +48,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ addToCart, visible }, dispatch);
+  return bindActionCreators({ addToCart, visible, inVisible }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryList);

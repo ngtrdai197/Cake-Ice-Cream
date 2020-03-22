@@ -4,8 +4,10 @@ import { createAppContainer } from 'react-navigation';
 
 import Home from './Home';
 import MyOrder from './MyOrder';
+import SnackBar from './SnackBar';
 import Navbar from '../components/Navbar';
 
+/** STACK NAVIGATOR */
 const AppNavigator = createStackNavigator(
   {
     Home: {
@@ -36,3 +38,6 @@ const AppNavigator = createStackNavigator(
 );
 
 export const AppContainer = createAppContainer(AppNavigator);
+
+/** PLACE EXPORT CONTAINER */
+export { SnackBar };

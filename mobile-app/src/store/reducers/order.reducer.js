@@ -1,8 +1,9 @@
-import { get, findIndex, cloneDeep } from 'lodash';
+import { get, findIndex } from 'lodash';
 import * as typeActions from '../actions/types.action';
 
 const initState = {
-  orders: []
+  orders: [],
+  total: 0
 };
 
 export default (state = initState, action) => {
@@ -15,7 +16,7 @@ export default (state = initState, action) => {
         payload.quantity = 1;
         payload.amount = payload.price;
         orders.push(payload);
-        return { ...state, orders };
+        return { ...state, orders, total: state.total + 1 };
       }
       return state;
     }
@@ -30,7 +31,8 @@ export default (state = initState, action) => {
         orders[index].quantity = 1;
       }
       orders[index].amount = calculateAmount(orders[index]);
-      return { ...state, orders };
+      const total = orders.reduce((pre, cur) => (pre += cur.quantity), 0);
+      return { ...state, orders, total };
     }
 
     case typeActions.DECREMENT: {
@@ -44,8 +46,10 @@ export default (state = initState, action) => {
       } else {
         orders.splice(index, 1);
       }
-      return { ...state, orders };
+      const total = orders.reduce((pre, cur) => (pre += cur.quantity), 0);
+      return { ...state, orders, total };
     }
+
     default:
       return state;
   }
